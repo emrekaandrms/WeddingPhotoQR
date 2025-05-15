@@ -1,5 +1,5 @@
 // Google Apps Script Web Uygulaması URL'nizi buraya yapıştırın
-const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwNX73v6xSKrJabBcwquTGa8HNi4HCmSSJnm-u_JAvMvpgtGHsu4YwgvbiqB5ntkeX7lg/exec';
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzbT08PlwZ4WUWjfcR58JfS8GbMIiIi4fktiF1ypSllVKikjB_08argLqdKzLl5mgd85w/exec';
 
 const uploadButton = document.getElementById('uploadButton');
 const fileInput = document.getElementById('fileInput');
