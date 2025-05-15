@@ -1,5 +1,5 @@
 // Google Apps Script Web Uygulaması URL'nizi buraya yapıştırın
-const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx_aeD4tk39cLl4CBEQI2uKuKv-SMb2fEp7uPxsKv_h634lXC7wfNpHw3jeRuX5jATD/exec';
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwNX73v6xSKrJabBcwquTGa8HNi4HCmSSJnm-u_JAvMvpgtGHsu4YwgvbiqB5ntkeX7lg/exec';
 
 const uploadButton = document.getElementById('uploadButton');
 const fileInput = document.getElementById('fileInput');
@@ -196,3 +196,10 @@ function uploadFile(file, onProgress) {
     });
 }
 */
+
+window.addEventListener('message', e => {
+    if (e.origin !== 'https://script.google.com') return;
+    alert(e.data.status === 'success'
+      ? 'Yükleme tamam!'
+      : 'Hata: '+e.data.message);
+});
