@@ -11,12 +11,22 @@
 <body>
     <div class="container">
         <h1>Düğün Anılarınızı Bizimle Paylaşın!</h1>
-        <p>[Çiftin Adları] - [Düğün Tarihi]</p>
+        <p>Asiye % Khan - 27.06.2025</p>
 
-        <button id="uploadButton" class="action-button">
-            <i class="fas fa-cloud-upload-alt"></i> Fotoğraf/Video Yükle
-        </button>
-        <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display: none;">
+        <form id="uploadForm"
+              action="https://script.google.com/macros/s/AKfycbwNX73v6xSKrJabBcwquTGa8HNi4HCmSSJnm-u_JAvMvpgtGHsu4YwgvbiqB5ntkeX7lg/exec"
+              method="post"
+              enctype="multipart/form-data"
+              target="uploadFrame">
+            <button type="button" id="chooseBtn" class="action-button">
+                <i class="fas fa-cloud-upload-alt"></i> Fotoğraf/Video Seç
+            </button>
+            <input type="file" name="file" id="fileInput"
+                   accept="image/*,video/*" style="display:none;">
+            <button type="submit" class="action-button">Yükle</button>
+        </form>
+
+        <iframe name="uploadFrame" style="display:none;"></iframe>
 
         <div id="uploadStatus" class="upload-status">
             <!-- Yükleme durumu mesajları ve progress bar buraya gelecek -->
@@ -24,17 +34,32 @@
 
         <div id="successMessage" class="success-message" style="display: none;">
             <i class="fas fa-check-circle"></i>
-            <p>Harika! Görselleriniz başarıyla yüklendi.</p>
-            <p>Birkaç tane daha yüklemek ister misiniz?</p>
+            <p>Harika! Görseliniz yüklendi.</p>
         </div>
 
         <div id="errorMessage" class="error-message" style="display: none;">
             <i class="fas fa-times-circle"></i>
-            <p>Eyvah! Bir sorun oluştu. Lütfen tekrar deneyin veya bize bildirin.</p>
+            <p>Eyvah! Bir sorun oluştu.</p>
             <p id="errorDetail"></p>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // "Fotoğraf/Video Seç" butonu input'u tetikliyor
+        document.getElementById('chooseBtn')
+            .addEventListener('click', () => document.getElementById('fileInput').click());
+
+        // postMessage ile iframe'den gelen yanıtlara bakıp UI güncelle
+        window.addEventListener('message', e => {
+            if (e.origin !== 'https://script.google.com') return; 
+            const data = e.data;
+            if (data.status === 'success') {
+                document.getElementById('successMessage').style.display = 'block';
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorDetail').textContent = data.message;
+            }
+        });
+    </script>
 </body>
 </html>
