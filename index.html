@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Düğün Anılarını Yükle</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (başarı ikonu için) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Düğün Anılarınızı Bizimle Paylaşın!</h1>
+        <p>[Çiftin Adları] - [Düğün Tarihi]</p>
+
+        <button id="uploadButton" class="action-button">
+            <i class="fas fa-cloud-upload-alt"></i> Fotoğraf/Video Yükle
+        </button>
+        <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display: none;">
+
+        <div id="uploadStatus" class="upload-status">
+            <!-- Yükleme durumu mesajları ve progress bar buraya gelecek -->
+        </div>
+
+        <div id="successMessage" class="success-message" style="display: none;">
+            <i class="fas fa-check-circle"></i>
+            <p>Harika! Görselleriniz başarıyla yüklendi.</p>
+            <p>Birkaç tane daha yüklemek ister misiniz?</p>
+        </div>
+
+        <div id="errorMessage" class="error-message" style="display: none;">
+            <i class="fas fa-times-circle"></i>
+            <p>Eyvah! Bir sorun oluştu. Lütfen tekrar deneyin veya bize bildirin.</p>
+            <p id="errorDetail"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
